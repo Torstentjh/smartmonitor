@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicatorBase } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import tw, { useDeviceContext, useAppColorScheme } from 'twrnc';
+import tw from '../assets/tailwind';
 
 import Info from '../pages/Info'
 import Home from '../pages/Home'
 import Setting from '../pages/Setting'
 import theme from '../store/setting'
+import Icon from "@ant-design/react-native/lib/icon";
 
 const Tab = createBottomTabNavigator();
 
 const BtmNavigator = () => {
-    const { initTheme } = theme()
-    // const tabbarColor = initTheme === 'light' ? '#FFFAFA' : '#20232a';
+    const { initTheme, displayMenu } = theme();
     const [tabbarColor, setTabbarColor] = useState('#FFFAFA')
     useEffect(() => {
-        setTabbarColor(initTheme === 'light' ? '#20232a' : '#FFFAFA')
+        setTabbarColor(initTheme === 'light' ? '#FFFAFA' : '#20232a')
     }, [initTheme])
+
     return (
         <>
             <Tab.Navigator screenOptions={{
                 headerTitleAllowFontScaling: true,
                 headerTitleAlign: 'left',
+                headerShown: false,
                 tabBarLabelStyle: {
                     fontSize: 17,
                     fontWeight: 'bold',
@@ -33,23 +35,20 @@ const BtmNavigator = () => {
                 <Tab.Screen name='首页' component={Home} options={{
                     tabBarStyle: {
                         backgroundColor: tabbarColor,
-                        height: 60,
+                        height: displayMenu ? 0 : 50,
                     },
-                    headerShown: false
+                    tabBarIcon: (({ focused, size, }) => (
+                        <Icon name='home' style={tw.style('text-slate-500', focused && 'text-blue-600')} size={20}></Icon>
+                    ))
                 }}></Tab.Screen>
-                <Tab.Screen name='信息' component={Info} options={{
+                <Tab.Screen name='管理' component={Info} options={{
                     tabBarStyle: {
                         backgroundColor: tabbarColor,
-                        height: 60,
+                        height: 50,
                     },
-                    headerShown: false
-                }}></Tab.Screen>
-                <Tab.Screen name='设置' component={Setting} options={{
-                    tabBarStyle: {
-                        backgroundColor: tabbarColor,
-                        height: 60,
-                    },
-                    headerShown: false
+                    tabBarIcon: (({ focused, size, }) => (
+                        <Icon name='apartment' style={tw.style('text-slate-500', focused && 'text-blue-600')} size={20}></Icon>
+                    ))
                 }}></Tab.Screen>
             </Tab.Navigator>
         </>

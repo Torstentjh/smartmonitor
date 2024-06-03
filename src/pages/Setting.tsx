@@ -6,12 +6,12 @@ import tw from '../assets/tailwind'
 import theme from '../store/setting'
 import ThemeModal from '../components/BtmSheet';
 const Setting = () => {
-    useDeviceContext(tw, {
-        observeDeviceColorSchemeChanges: false,
-        initialColorScheme: `light`, // 'light' | 'dark' | 'device'
-    });
-    const [colorScheme, toggleColorScheme, setColorScheme] = useAppColorScheme(tw);
-    const { toggleTheme, initTheme } = theme();
+    // useDeviceContext(tw, {
+    //     observeDeviceColorSchemeChanges: false,
+    //     initialColorScheme: `light`, // 'light' | 'dark' | 'device'
+    // });
+    // const [colorScheme, toggleColorScheme, setColorScheme] = useAppColorScheme(tw);
+    // const { toggleTheme, initTheme } = theme();
     return (
         <SafeAreaView>
             <View style={tw.style('dark:bg-black bg-red-600')}>
@@ -29,10 +29,7 @@ const Setting = () => {
                     {/* <ThemeModal></ThemeModal> */}
                 </View>
             </View>
-
-
         </SafeAreaView>
-
     );
 };
 
