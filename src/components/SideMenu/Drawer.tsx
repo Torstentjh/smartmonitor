@@ -5,7 +5,6 @@ import tw from '../../assets/tailwind';
 
 import SideRoute from './SideRoute';
 import Profile from './Profile';
-import Home from '../../pages/Home';
 import { SharedValue } from 'react-native-reanimated';
 import theme from '../../store/setting'
 type Props = {

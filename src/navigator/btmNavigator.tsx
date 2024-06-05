@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ActivityIndicatorBase } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import tw from '../assets/tailwind';
 
-import Info from '../pages/Info'
+import Manage from '../pages/Mange'
 import Home from '../pages/Home'
 import Setting from '../pages/Setting'
 import theme from '../store/setting'
@@ -41,7 +41,7 @@ const BtmNavigator = () => {
                         <Icon name='home' style={tw.style('text-slate-500', focused && 'text-blue-600')} size={20}></Icon>
                     ))
                 }}></Tab.Screen>
-                <Tab.Screen name='管理' component={Info} options={{
+                <Tab.Screen name='管理' component={Manage} options={{
                     tabBarStyle: {
                         backgroundColor: tabbarColor,
                         height: 50,

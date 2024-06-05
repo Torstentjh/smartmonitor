@@ -5,11 +5,11 @@ import { useDeviceContext, useAppColorScheme } from 'twrnc';
 import { NavigationProp, useNavigation, useNavigationState } from '@react-navigation/native';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming, useDerivedValue, Extrapolation, interpolate } from 'react-native-reanimated';
 
-import tw from '../assets/tailwind'
-import theme from '../store/setting'
-import DisplayMenu from '../components/SideMenu/DisplayMenu';
-import Overlay from '../components/SideMenu/Overlay';
-import Drawer from '../components/SideMenu/Drawer';
+import tw from '../../assets/tailwind'
+import theme from '../../store/setting'
+import DisplayMenu from '../../components/SideMenu/DisplayMenu';
+import Overlay from '../../components/SideMenu/Overlay';
+import Drawer from '../../components/SideMenu/Drawer';
 
 
 
@@ -19,7 +19,7 @@ const Home = () => {
     //     initialColorScheme: `light`, // 'light' | 'dark' | 'device'
     // });
     // const [colorScheme, toggleColorScheme, setColorScheme] = useAppColorScheme(tw);
-    // const { toggleTheme, initTheme } = theme();
+    const { toggleTheme, initTheme } = theme();
     const insets = useSafeAreaInsets();
     const active = useSharedValue(false);
     const animation = useAnimatedStyle(() => {

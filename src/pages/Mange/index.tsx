@@ -4,11 +4,11 @@ import { useDeviceContext, useAppColorScheme } from 'twrnc';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
-import tw from '../assets/tailwind'
-import theme from '../store/setting'
+import tw from '../../assets/tailwind'
+import theme from '../../store/setting'
 
 
-const Info = () => {
+const Ctrl = () => {
     useDeviceContext(tw, {
         observeDeviceColorSchemeChanges: false,
         initialColorScheme: `light`, // 'light' | 'dark' | 'device'
@@ -37,4 +37,4 @@ const Info = () => {
     );
 };
 
-export default Info;
+export default Ctrl;
