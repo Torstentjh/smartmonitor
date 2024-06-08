@@ -26,6 +26,10 @@ const SideRoute = (props: Props) => {
     return (
         <Pressable style={tw.style('flex mt-6 w-2/5  rounded-2xl h-12')} onPress={() => {
             Navigation.navigate('Setting');
+            // Navigation.reset({
+            //     index: 0,
+            //     routes: [{ name: 'Home' }]
+            // })
             toggleMenu();
             active!.value = false;
         }}>

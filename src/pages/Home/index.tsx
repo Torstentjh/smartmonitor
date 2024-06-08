@@ -6,7 +6,7 @@ import { NavigationProp, useNavigation, useNavigationState } from '@react-naviga
 import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming, useDerivedValue, Extrapolation, interpolate } from 'react-native-reanimated';
 
 import tw from '../../assets/tailwind'
-import theme from '../../store/setting'
+// import theme from '../../store/setting'
 import DisplayMenu from '../../components/SideMenu/DisplayMenu';
 import Overlay from '../../components/SideMenu/Overlay';
 import Drawer from '../../components/SideMenu/Drawer';
@@ -19,7 +19,7 @@ const Home = () => {
     //     initialColorScheme: `light`, // 'light' | 'dark' | 'device'
     // });
     // const [colorScheme, toggleColorScheme, setColorScheme] = useAppColorScheme(tw);
-    const { toggleTheme, initTheme } = theme();
+    // const { toggleMenu } = theme()
     const insets = useSafeAreaInsets();
     const active = useSharedValue(false);
     const animation = useAnimatedStyle(() => {
@@ -41,7 +41,7 @@ const Home = () => {
             <SafeAreaView>
                 <Drawer active={active}></Drawer>
                 <Animated.View style={[animation, container.container]} >
-                    <View style={tw.style('dark:bg-slate-600 w-full h-full bg-white')} >
+                    <View style={tw.style('w-full h-full dark:bg-dark-bg bg-light-bg')} >
                         <DisplayMenu active={active}></DisplayMenu>
                         <Text style={tw.style('mt-5 mb-5 text-red-400 dark:text-green-600')}>ComponentName</Text>
                         <Text style={tw.style('mt-5 mb-5 text-red-400 dark:text-green-600')}>ComponentName</Text>

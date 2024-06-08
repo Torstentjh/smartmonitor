@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, Dimensions, Image } from 'react-native';
 import tw from '../../assets/tailwind';
-import { StackActions } from '@react-navigation/native';
+import { StackActions, CommonActions } from '@react-navigation/native';
 
 import { useNavigation } from '@react-navigation/native';
 import usseNavigation from '../../hooks/useNavigation';

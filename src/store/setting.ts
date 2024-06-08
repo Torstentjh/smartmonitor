@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 interface themeSetting {
-    initTheme: string;
+    initTabBarColor: string;
     toggleTheme: (state: string) => void;
     displayMenu: boolean;
     toggleMenu: () => void;
@@ -9,10 +9,10 @@ interface themeSetting {
 }
 
 const theme = create<themeSetting>((set) => ({
-    initTheme: 'light',
+    initTabBarColor: 'light',
     displayMenu: false,
     toggleMenu: () => set((state) => ({ displayMenu: !state.displayMenu })),
-    toggleTheme: (state) => set(() => ({ initTheme: state })),
+    toggleTheme: (state) => set(() => ({ initTabBarColor: state })),
 }));
 
 export default theme;

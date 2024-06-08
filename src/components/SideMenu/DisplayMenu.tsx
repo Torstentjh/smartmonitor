@@ -11,7 +11,7 @@ type Props = {
 const DisplayMenu = ({ active }: Props) => {
     const { toggleMenu } = theme()
     return (
-        <View style={tw.style('dark:bg-slate-600')}>
+        <View style={tw.style('dark:bg-dark-bg bg-light-bg')}>
             <Pressable style={tw.style(' w-24')} onPress={() => {
                 active.value = true;
                 toggleMenu();

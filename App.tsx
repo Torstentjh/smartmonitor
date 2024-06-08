@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RootNavigator from './src/navigator/rootNavigate';
-import getData from './src/utils/readFile';
+import AppContextProvider from './src/global/ThemeProvider';
+import { AppContext } from './src/global/ThemeProvider';
+import Provider from '@ant-design/react-native/lib/provider';
 
 function App(): JSX.Element {
-
   useEffect(() => {
     const checkFirstLoad = async () => {
       try {
@@ -25,13 +26,19 @@ function App(): JSX.Element {
     checkFirstLoad();
   }, [])
   const [firstLoad, setfirstLoad] = useState(false);
+
   // const ss = getData()
   // const firstLoad =  ss === true ? true : false;
   //用存储库，默认为false，第一次加载点击后，设置为true并存储，第二次取这个值然后传给导航器
   return (
-    <SafeAreaProvider >
-      <RootNavigator firstLoad={firstLoad} />
-    </SafeAreaProvider>
+    <AppContextProvider>
+      <SafeAreaProvider >
+        <Provider>
+          <RootNavigator firstLoad={firstLoad} />
+        </Provider>
+      </SafeAreaProvider>
+    </AppContextProvider>
+
   );
 }
 

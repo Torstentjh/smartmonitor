@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicatorBase } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import tw from '../assets/tailwind';
-
 import Manage from '../pages/Mange'
 import Home from '../pages/Home'
-import Setting from '../pages/Setting'
+
 import theme from '../store/setting'
 import Icon from "@ant-design/react-native/lib/icon";
+import { AppContext } from '../global/ThemeProvider';
 
 const Tab = createBottomTabNavigator();
 
 const BtmNavigator = () => {
-    const { initTheme, displayMenu } = theme();
-    const [tabbarColor, setTabbarColor] = useState('#FFFAFA')
-    useEffect(() => {
-        setTabbarColor(initTheme === 'light' ? '#FFFAFA' : '#20232a')
-    }, [initTheme])
+    const { initTabBarColor, displayMenu } = theme();
+    const [colorScheme, toggleColorScheme, setColorScheme, buster, tw] = useContext(AppContext);
 
     return (
         <>
@@ -34,7 +30,7 @@ const BtmNavigator = () => {
             }}>
                 <Tab.Screen name='首页' component={Home} options={{
                     tabBarStyle: {
-                        backgroundColor: tabbarColor,
+                        backgroundColor: colorScheme === 'light' ? '#ffffff' : '#161c24',
                         height: displayMenu ? 0 : 50,
                     },
                     tabBarIcon: (({ focused, size, }) => (
@@ -43,7 +39,7 @@ const BtmNavigator = () => {
                 }}></Tab.Screen>
                 <Tab.Screen name='管理' component={Manage} options={{
                     tabBarStyle: {
-                        backgroundColor: tabbarColor,
+                        backgroundColor: colorScheme === 'light' ? '#ffffff' : '#161c24',
                         height: 50,
                     },
                     tabBarIcon: (({ focused, size, }) => (
