@@ -9,8 +9,6 @@ module.exports = {
                 'content-l': '#f2f2f2',
                 'content-d': '#212b36',
                 //上面是小部分一块内容的背景颜色，与主体屏幕不同
-                'text-g': '#f2f2f2',
-                'purple': '#c6cbef',
                 'darwer-dark': '#475569',
                 'darwer-light': '#c6cbef',
                 'themedarwer-d': '#212b36',
@@ -24,7 +22,7 @@ module.exports = {
                     // 自定义样式
                 },
             },
-            text: {
+            textColor: {
                 'darktext': '#f2f2f2',
                 'lighttext': '#20232a',
             },

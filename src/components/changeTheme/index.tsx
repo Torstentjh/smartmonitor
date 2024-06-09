@@ -10,7 +10,6 @@ import Icon from './Icon';
 
 
 const Change = () => {
-    // const [curtheme, setcurtheme] = useState('light');
     const setTheme = (value: any) => {
         const setData = async (value: any) => {
             try {

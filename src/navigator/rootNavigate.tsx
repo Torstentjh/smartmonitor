@@ -3,29 +3,28 @@ import { StatusBar, useColorScheme, } from 'react-native';
 import { createStackNavigator, CardStyleInterpolators, TransitionPresets, StackNavigationProp } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-
+import { AppContext } from '../global/ThemeProvider';
 import themeSet from '../store/setting';
+
 import BtmNavigator from './btmNavigator'
-import { ThemeSetting } from '../utils/themeProvide';
-import Another from '../pages/Another';
+import Contacts from '../pages/Contacts';
 import Setting from '../pages/Setting/Setting';
 import Launcher from '../pages/Common/launch';
 import Firstlauncher from '../pages/Common/transition';
-import { AppContext } from '../global/ThemeProvider';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Profile from '../pages/User/Profile';
+
 
 
 export type RootStackParamList = {
     Home: undefined;
     Register: undefined;
-    Detail: undefined;
     Changeuser: undefined;
-    Myhome: undefined;
-    LoginUser: undefined;
+    Login: undefined;
     ChangePwd: undefined;
     Setting: undefined;
     Launcher: undefined;
-    Firstlauncher: undefined;
+    Contacts: undefined;
+    Profile: undefined
 }
 type Props = {
     firstLoad: boolean
@@ -64,8 +63,9 @@ const rootNavigator = ({ firstLoad }: Props) => {
                 }}>
                     <Stack.Screen name='Launcher' component={LoadPage} />
                     <Stack.Screen name='Home' component={BtmNavigator} />
-                    <Stack.Screen name='Detail' component={Another} />
+                    <Stack.Screen name='Contacts' component={Contacts} />
                     <Stack.Screen name='Setting' component={Setting} />
+                    <Stack.Screen name='Profile' component={Profile} />
                 </Stack.Navigator>
 
             </NavigationContainer>

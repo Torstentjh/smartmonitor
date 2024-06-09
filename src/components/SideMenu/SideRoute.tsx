@@ -9,10 +9,11 @@ import { RootStackParamList } from '../../navigator/rootNavigate';
 import useNavigationHook from '../../hooks/useNavigation';
 import { SharedValue } from 'react-native-reanimated';
 import theme from '../../store/setting';
+
 type Props = {
     title: string;
     icon: OutlineGlyphMapType;
-    route: string;
+    route: keyof RootStackParamList;
     active?: SharedValue<boolean>;
 }
 
@@ -20,16 +21,9 @@ const SideRoute = (props: Props) => {
     const { toggleMenu } = theme()
     const Navigation = useNavigationHook();
     const { title, icon, route, active } = props;
-    function routeTo() {
-
-    }
     return (
         <Pressable style={tw.style('flex mt-6 w-2/5  rounded-2xl h-12')} onPress={() => {
-            Navigation.navigate('Setting');
-            // Navigation.reset({
-            //     index: 0,
-            //     routes: [{ name: 'Home' }]
-            // })
+            Navigation.navigate(route);
             toggleMenu();
             active!.value = false;
         }}>

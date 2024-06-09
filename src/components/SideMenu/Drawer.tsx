@@ -20,9 +20,9 @@ const Drawer = ({ active }: Props) => {
             <View style={[tw.style('w-full h-full dark:bg-darwer-dark bg-darwer-light ')]}>
                 <View style={tw.style('mt-30 ml-8')}>
                     <Profile></Profile>
-                    <SideRoute active={active} title='Profile' icon='user' route='test'></SideRoute>
-                    <SideRoute active={active} title='Contacts' icon='comment' route='test'></SideRoute>
-                    <SideRoute active={active} title='Setting' icon='setting' route='test'></SideRoute>
+                    <SideRoute active={active} title='Profile' icon='user' route='Profile'></SideRoute>
+                    <SideRoute active={active} title='Contacts' icon='comment' route='Contacts'></SideRoute>
+                    <SideRoute active={active} title='Setting' icon='setting' route='Setting'></SideRoute>
                 </View>
             </View>
 

@@ -13,8 +13,8 @@ type props = {
 const BottomSheetT = ({ bottomSheetRef, handleSheetChanges }: props) => {
     const snappoints = ['50%']
     const animationConfigs = useBottomSheetTimingConfigs({
-        duration: 600,
-        easing: Easing.exp,
+        duration: 1000,
+        easing: Easing.in(Easing.bounce),
     });
 
     return (
