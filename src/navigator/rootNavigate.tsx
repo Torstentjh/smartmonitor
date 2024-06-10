@@ -62,12 +62,20 @@ const rootNavigator = ({ firstLoad }: Props) => {
                     headerShown: false,
                     gestureDirection: 'horizontal',
                     detachPreviousScreen: false,
+
                 }}>
                     <Stack.Screen name='Launcher' component={LoadPage} />
                     <Stack.Screen name='Home' component={BtmNavigator} />
                     <Stack.Screen name='Contacts' component={Contacts} />
                     <Stack.Screen name='Setting' component={Setting} />
-                    <Stack.Screen name='Profile' component={Profile} />
+                    <Stack.Screen name='Profile' component={Profile} options={{
+                        headerShown: true,
+                        headerTitle: '个人资料',
+                        headerTitleAlign: 'center',
+                        headerStyle: { backgroundColor: clor() },
+                        headerTitleStyle: { color: colorScheme === 'light' ? '#475569' : '#c6cbef', },
+                        headerTintColor: colorScheme === 'light' ? '#475569' : '#c6cbef',
+                    }} />
                     <Stack.Screen name='Login' component={Login} />
                     <Stack.Screen name='Register' component={Register} />
                 </Stack.Navigator>

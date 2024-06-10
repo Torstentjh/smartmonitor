@@ -7,13 +7,32 @@ import Home from '../pages/Home'
 import theme from '../store/setting'
 import Icon from "@ant-design/react-native/lib/icon";
 import { AppContext } from '../global/ContextProvider';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Userinfo from '../store/userInfo';
 
 const Tab = createBottomTabNavigator();
 
 const BtmNavigator = () => {
     const { initTabBarColor, displayMenu } = theme();
+    const { setIsLogin, isLogin } = Userinfo();
     const [colorScheme, toggleColorScheme, setColorScheme, buster, tw] = useContext(AppContext);
-
+    useEffect(() => {
+        const getData = async (key: string) => {
+            try {
+                const jsonValue = await AsyncStorage.getItem(key);
+                return jsonValue != null ? JSON.parse(jsonValue) : null;
+            } catch (e) {
+                // error reading value
+            }
+        };
+        const res = async () => {
+            const res = await getData('userInfo');
+            if (res.isLogin) {
+                setIsLogin(true)
+            }
+        }
+        res()
+    }, [isLogin])
     return (
         <>
             <Tab.Navigator screenOptions={{
@@ -24,7 +43,6 @@ const BtmNavigator = () => {
                     fontSize: 17,
                     fontWeight: 'bold',
                 },
-                // headerShown:false
                 headerStyle: {
                 },
             }}>

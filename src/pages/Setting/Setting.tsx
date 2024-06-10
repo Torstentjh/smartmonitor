@@ -1,41 +1,27 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Easing } from 'react-native-reanimated';
-import BottomDrawer from '../../components/changeTheme/BottomSheet';
-import Button from '@ant-design/react-native/lib/button';
-import Modal from '@ant-design/react-native/lib/modal'
-import tw from '../../assets/tailwind';
-import Change from '../../components/changeTheme';
-import CommontButton from '../../components/CommonButton';
-import Icon from '@ant-design/react-native/lib/icon';
-import BottomSheet from '@gorhom/bottom-sheet';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-function Btn({ bbb }: { bbb: () => void }) {
-    const dis = useSafeAreaInsets()
-    // const navige = useNavFilter()
-    const onButtonClick = () => {
-        Modal.alert('注销登陆', '确定要注销登陆?', [
-            { text: 'Cancel', onPress: () => console.log('cancel'), style: 'cancel' },
-            { text: 'OK', onPress: () => bbb() },
-        ])
-    }
-    return (
-        <View style={[tw.style(' absolute bottom-20'), { left: '25%', width: '50%', bottom: '10%' }]}>
-            <Button
-                style={tw.style('rounded-2xl h-13')}
-                type="primary"
-                onPress={onButtonClick}
-            >注销登陆</Button>
-        </View>
-    )
-}
+import BottomSheet from '@gorhom/bottom-sheet';
+import Icon from '@ant-design/react-native/lib/icon';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import tw from '../../assets/tailwind';
+import BottomDrawer from '../../components/changeTheme/BottomSheet';
+import CommontButton from '../../components/CommonButton';
+import { useNavFilter } from '../../hooks/useNavigate'
+import Userinfo from '../../store/userInfo';
+
 
 const Setting = () => {
-    const bb = () => {
-        console.log('1');
+    const { setIsLogin, isLogin } = Userinfo();
+    const { navigation } = useNavFilter()
+    const setStorage = async (key: string, val: object) => {
+        try {
+            const jsonValue = JSON.stringify(val);
+            await AsyncStorage.setItem(key, jsonValue);
+        } catch (e) {
+        }
     }
-
     const bottomSheetRef = useRef<BottomSheet>(null);
     const handleSheetChanges = useCallback((index: number) => {
         bottomSheetRef.current?.snapToIndex(index);
@@ -51,7 +37,13 @@ const Setting = () => {
                     <CommontButton icon={<Icon name="wechat" size={24} color="#00CED1" />} name={'切换地区'}></CommontButton>
                     <CommontButton icon={<Icon name="github" size={24} color="#00CED1" />} name={'隐私设置'}></CommontButton>
                 </View>
-                <Btn bbb={bb}></Btn>
+                <Pressable style={[tw.style('absolute bottom-20 rounded-full items-center dark:bg-slate-500 bg-teal-500'), { left: '20%', width: '60%', bottom: '12%' }]} onPress={() => {
+                    setStorage('userInfo', {})
+                    setIsLogin(false);
+                    navigation.goBack();
+                }}>
+                    <Text style={tw.style('text-lighttext dark:text-darktext font-bold text-lg text-center h-15 justify-center align-middle')}>注销登陆</Text>
+                </Pressable>
                 <BottomDrawer bottomSheetRef={bottomSheetRef} handleSheetChanges={handleSheetChanges}></BottomDrawer>
             </View>
         </SafeAreaView>

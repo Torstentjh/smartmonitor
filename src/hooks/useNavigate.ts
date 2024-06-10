@@ -5,7 +5,6 @@ import Userinfo from "../store/userInfo";
 let userInfoRef = false;
 
 export const useNavFilter = () => {
-    // export default  useNavFilter = () => {
     const { isLogin } = Userinfo();
     if (isLogin) {
         userInfoRef = true;

@@ -14,7 +14,7 @@ interface user {
     menbers: Member[];
     setmenbers: (newMenbers: []) => void;
     isLogin: boolean;
-    setIsLogin: () => void;
+    setIsLogin: (state: boolean) => void;
     avatarUrl: string;
     addAvatar: (newAvatar: string) => void;
     isChose: boolean;
@@ -36,8 +36,8 @@ const Userinfo = create<user>((set) => ({
     setmenbers: (newMenbers) => set({ menbers: newMenbers }),
     menbers: [],
     isLogin: false,
-    setIsLogin: () => set((state) => ({ isLogin: !state.isLogin })),
-    avatarUrl: 'file:///data/user/0/com.rndemo/cache/rn_image_picker_lib_temp_b9ea2e00-ffe1-4ca8-b48d-361f5696f513.png',
+    setIsLogin: (state) => set(() => ({ isLogin: state })),
+    avatarUrl: '../../assets/global/avatar.png',
     addAvatar: (newAvatar) => set({ avatarUrl: newAvatar }),
     nickName: '',
     admin: '',

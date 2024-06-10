@@ -17,26 +17,6 @@ const errorHandle = (status: number) => {
             status = 415;
             message = "用户已经存在";
             break;
-        case 416:
-            status = 416;
-            message = "需要登录使用密码查看该文章，请尝试登录/token失效";
-            break;
-        case 420:
-            status = 420;
-            message = "发布失败/标题或内容不能为空";
-            break;
-        case 421:
-            status = 421;
-            message = '文章内容没有修改/重复';
-            break;
-        case 422:
-            status = 422;
-            message = '此用户没有权限查看该内容(请尝试使用密码)'
-            break;
-        case 250:
-            status = 250;
-            message = '该用户没有权限使用此功能'
-            break;
         case 423:
             status = 423;
             message = '注册用户数量超过限制'
@@ -45,7 +25,6 @@ const errorHandle = (status: number) => {
             status = 424;
             message = '请使用不同的密码'
             break;
-
         default:
             status = 404;
             message = 'not found---'

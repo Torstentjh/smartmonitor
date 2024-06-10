@@ -9,6 +9,8 @@ import { useNavFilter } from '../../hooks/useNavigate';
 import toLogin from "../../hooks/useRequest";
 import Input from '../../components/Input';
 import Checkbox from '../../components/Checkbox';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Userinfo from '../../store/userInfo';
 
 interface Secret {
     name: string;
@@ -19,7 +21,17 @@ function Login() {
     const [isCheckout, setIsCheckout] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const { setIsLogin } = Userinfo();
+    const setStorage = async (key: string, val: object) => {
+        try {
+            // const value = await AsyncStorage.getItem(key);
+            const jsonValue = JSON.stringify(val);
+            await AsyncStorage.setItem(key, jsonValue);
+            //   setfirstLoad(JSON.parse(jsonValue))
+        } catch (e) {
+            // error reading value
+        }
+    }
     const handleSubmit = async (userInfo: Secret) => {
         if (!userInfo.name || !userInfo.pwd) {
             Toast.fail('账号或密码不能为空', 0.5)
@@ -29,7 +41,7 @@ function Login() {
             Toast.fail('请先同意用户协议', 0.5)
             return;
         }
-        const res = await toLogin(userInfo.name, userInfo.pwd)
+        const res = await toLogin({ body: { name: username, pwd: password }, method: 'POST' })
         if (res.status != 200) {
             Toast.fail(res.message, 0.4)
         } else {
@@ -41,8 +53,11 @@ function Login() {
             //后面改用本地存储，持久化登陆状态
             // setIsLogin()
             //这里也是判断了登陆状态然后渲染主页的内容，也需要持久化
-            navigation.goBack()
-            Toast.success('登陆成功', 1)
+            setStorage('userInfo', res);
+            setIsLogin(true);
+            Toast.success('登陆成功', 1);
+            navigation.goBack();
+
         }
 
     };
@@ -88,5 +103,3 @@ function Login() {
 }
 
 export default Login;
-
-

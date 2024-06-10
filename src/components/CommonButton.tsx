@@ -9,9 +9,10 @@ interface ButtonProps {
     name: string;
     func?: (prop?: any) => void;
     style?: Style;
+    rightContent?: React.ReactNode;
 }
 
-const CommontButton: React.FC<ButtonProps> = ({ icon, name, func, style }) => {
+const CommontButton: React.FC<ButtonProps> = ({ icon, name, func, style, rightContent }) => {
     return (
         <Pressable
             onPress={() => { if (func) func(); }}
@@ -21,7 +22,14 @@ const CommontButton: React.FC<ButtonProps> = ({ icon, name, func, style }) => {
                     {icon}
                     <Text style={tw.style('font-bold text-2xl dark:text-slate-100 ml-2')}>{name}</Text>
                 </View>
-                <Text style={tw.style('text-2xl absolute right-6')}>&gt;</Text>
+                {/* <Text style={tw.style('absolute right-6 text-2xl dark:text-slate-100')}>&gt;</Text> */}
+                {rightContent ? (
+                    <View style={tw.style('absolute right-8')}>
+                        {rightContent}
+                    </View>
+                ) : (
+                    <Text style={tw.style('absolute right-8 text-2xl dark:text-slate-100')}>&gt;</Text>
+                )}
             </View>
         </Pressable>
     );

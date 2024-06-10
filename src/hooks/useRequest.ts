@@ -1,14 +1,18 @@
 import errorHandle from '../utils/errorHandle';
-async function Login(name: string, pwd: string) {
+// import {REACT_APP_DevApi} from '@env';
+type prop = {
+    method: string,
+    body: { name: string, pwd: string }
+}
+async function Login({ body, method }: prop) {
     const formData = new URLSearchParams();
-    formData.append('name', name);
-    formData.append('pwd', pwd);
+    formData.append('name', body.name);
+    formData.append('pwd', body.pwd);
 
     try {
-        // const res = await fetch('http://localhost:5200/user/querymember', {
-        // const res = await fetch('http://192.168.0.115:5200/login', {
-        const res = await fetch('http://43.138.109.120:5200/login', {
-            method: 'POST',
+
+        const res = await fetch(`${process.env.REACT_APP_DevApi}/login`, {
+            method: method,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },

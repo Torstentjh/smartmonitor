@@ -24,7 +24,6 @@ const FirstLauncher = () => {
                     // await AsyncStorage.setItem('FirstLoad', true);
                     const jsonValue = JSON.stringify(false);
                     await AsyncStorage.setItem('FirstLoad', jsonValue);
-                    console.log(jsonValue);
                 }
             } catch (e) {
                 // error reading value

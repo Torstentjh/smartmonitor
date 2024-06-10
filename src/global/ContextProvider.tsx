@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import tw, { useDeviceContext, useAppColorScheme } from '../assets/tailwind';
-import { useWindowDimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
