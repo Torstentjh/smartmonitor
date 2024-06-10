@@ -6,9 +6,10 @@ import { OutlineGlyphMapType } from '@ant-design/icons-react-native';
 
 import tw from '../../assets/tailwind';
 import { RootStackParamList } from '../../navigator/rootNavigate';
-import useNavigationHook from '../../hooks/useNavigation';
+
 import { SharedValue } from 'react-native-reanimated';
 import theme from '../../store/setting';
+import { useNavFilter } from '../../hooks/useNavigate';
 
 type Props = {
     title: string;
@@ -18,12 +19,12 @@ type Props = {
 }
 
 const SideRoute = (props: Props) => {
-    const { toggleMenu } = theme()
-    const Navigation = useNavigationHook();
+    const { navigate } = useNavFilter();
+    const { toggleMenu } = theme();
     const { title, icon, route, active } = props;
     return (
         <Pressable style={tw.style('flex mt-6 w-2/5  rounded-2xl h-12')} onPress={() => {
-            Navigation.navigate(route);
+            navigate({ path: route });
             toggleMenu();
             active!.value = false;
         }}>

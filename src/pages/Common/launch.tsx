@@ -4,7 +4,6 @@ import tw from '../../assets/tailwind';
 import { StackActions, CommonActions } from '@react-navigation/native';
 
 import { useNavigation } from '@react-navigation/native';
-import usseNavigation from '../../hooks/useNavigation';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
@@ -12,7 +11,7 @@ const Launcher = () => {
     const windowWidth = Dimensions.get('window').width * 0.2;
     const startRef = useRef<any>(null);
     const jumpRef = useRef<any>(null);
-    const navi = usseNavigation()
+    const navi = useNavigation()
     const [jumpTime, setJumpTime] = useState(3);
     useEffect(() => {
         jumpRef.current = setInterval(() => {

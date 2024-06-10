@@ -6,7 +6,7 @@ import Home from '../pages/Home'
 
 import theme from '../store/setting'
 import Icon from "@ant-design/react-native/lib/icon";
-import { AppContext } from '../global/ThemeProvider';
+import { AppContext } from '../global/ContextProvider';
 
 const Tab = createBottomTabNavigator();
 

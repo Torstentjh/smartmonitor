@@ -3,7 +3,7 @@ import { StatusBar, useColorScheme, } from 'react-native';
 import { createStackNavigator, CardStyleInterpolators, TransitionPresets, StackNavigationProp } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { AppContext } from '../global/ThemeProvider';
+import { AppContext } from '../global/ContextProvider';
 import themeSet from '../store/setting';
 
 import BtmNavigator from './btmNavigator'
@@ -12,6 +12,8 @@ import Setting from '../pages/Setting/Setting';
 import Launcher from '../pages/Common/launch';
 import Firstlauncher from '../pages/Common/transition';
 import Profile from '../pages/User/Profile';
+import Login from '../pages/User/Login';
+import Register from '../pages/User/Register';
 
 
 
@@ -66,6 +68,8 @@ const rootNavigator = ({ firstLoad }: Props) => {
                     <Stack.Screen name='Contacts' component={Contacts} />
                     <Stack.Screen name='Setting' component={Setting} />
                     <Stack.Screen name='Profile' component={Profile} />
+                    <Stack.Screen name='Login' component={Login} />
+                    <Stack.Screen name='Register' component={Register} />
                 </Stack.Navigator>
 
             </NavigationContainer>

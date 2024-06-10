@@ -4,7 +4,7 @@ import tw from '../../assets/tailwind';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // import theme from '../../store/setting'
-import { AppContext } from '../../global/ThemeProvider';
+import { AppContext } from '../../global/ContextProvider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from './Icon';
 

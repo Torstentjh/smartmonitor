@@ -37,8 +37,6 @@ const AppContextProvider = ({ children }: { children: React.ReactNode }) => {
         // theme === 'light' ? toggleColorScheme : toggleColorScheme
     }, [])
 
-
-
     const contexts = [colorScheme, toggleColorScheme, setColorScheme, buster, tw];
     return <AppContext.Provider value={contexts}>{children}</AppContext.Provider>;
 };

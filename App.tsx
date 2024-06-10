@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RootNavigator from './src/navigator/rootNavigate';
-import AppContextProvider from './src/global/ThemeProvider';
-import { AppContext } from './src/global/ThemeProvider';
+import AppContextProvider from './src/global/ContextProvider';
 import Provider from '@ant-design/react-native/lib/provider';
 
 function App(): JSX.Element {

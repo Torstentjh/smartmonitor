@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import tw from '../../assets/tailwind'
 // import theme from '../../store/setting'
-import { AppContext } from '../../global/ThemeProvider';
+import { AppContext } from '../../global/ContextProvider';
 
 
 const Manage = () => {

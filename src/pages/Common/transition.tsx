@@ -3,7 +3,7 @@ import { View, Text, Pressable, Dimensions, Image, TouchableHighlight } from 're
 import tw from '../../assets/tailwind';
 import { StackActions } from '@react-navigation/native';
 
-import usseNavigation from '../../hooks/useNavigation';
+import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,11 +11,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const FirstLauncher = () => {
 
     const windowWidth = Dimensions.get('window').width * 0.2;
-    const navi = usseNavigation()
+    const navigate = useNavigation()
     const cleanup = () => {
         // clearTimeout(startRef.current)
         // clearInterval(jumpRef.current)
-        navi.dispatch(StackActions.replace('Home'))
+        navigate.dispatch(StackActions.replace('Home'))
         const setFirst = async () => {
             try {
                 const value = await AsyncStorage.getItem('FirstLoad');
