@@ -57,7 +57,6 @@ function Login() {
             setIsLogin(true);
             Toast.success('登陆成功', 1);
             navigation.goBack();
-
         }
 
     };
@@ -74,7 +73,7 @@ function Login() {
                     <Input onSubmit={handleSubmit} setUsername={setUsername} setPassword={setPassword} username={username} password={password} isCheckout={isCheckout}></Input>
                 </View>
                 <View style={tw.style('items-center')}>
-                    <Pressable style={tw.style('w-2/3 h-12 my-5 rounded-3xl justify-center bg-teal-500')} onPress={() => {
+                    <Pressable style={tw.style('w-2/3 h-12 my-5 rounded-3xl justify-center bg-teal-500 shadow-md')} onPress={() => {
                         handleSubmit({ name: username, pwd: password })
                     }}>
                         <Text style={tw.style('text-center font-bold text-lg dark:text-darktext text-lighttext justify-center flex')}>登陆</Text>

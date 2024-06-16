@@ -6,11 +6,8 @@ let userInfoRef = false;
 
 export const useNavFilter = () => {
     const { isLogin } = Userinfo();
-    if (isLogin) {
-        userInfoRef = true;
-    } else {
-        userInfoRef = false;
-    }
+
+    isLogin ? userInfoRef = true : userInfoRef = false;
 
     //获取当前路由栈信息
     const routes = useNavigationState(state => (
@@ -18,7 +15,6 @@ export const useNavFilter = () => {
     ));
     // 获取导航对象
     const navigation = useNavigation<NavigationProp<any>>();
-    // // console.log(navigation, 'navigation====navigation');
 
     // 获取当前活动路由名
     const activeName = useMemo(() => {
@@ -37,6 +33,9 @@ export const useNavFilter = () => {
                 navigation.navigate(path, params);
             }
         } else {
+            // 底下这里改密码和注册是登陆页进行跳转的，但是它先判断了已经为login，所以写到
+            // 随便带个参数再判断跳转注册还是修改密码
+            //
             if (params && params.toChangePwd) {
                 navigation.navigate(path, params);
             } else if (params && params.toRegister) {

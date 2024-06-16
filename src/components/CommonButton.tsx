@@ -4,7 +4,7 @@ import tw from '../assets/tailwind';
 
 type Style = StyleProp<ViewStyle | ImageStyle | TextStyle | FlexStyle>
 
-interface ButtonProps {
+type ButtonProps = {
     icon?: React.ReactNode;
     name: string;
     func?: (prop?: any) => void;

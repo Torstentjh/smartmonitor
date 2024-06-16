@@ -11,8 +11,11 @@ module.exports = {
                 //上面是小部分一块内容的背景颜色，与主体屏幕不同
                 'darwer-dark': '#475569',
                 'darwer-light': '#c6cbef',
+                //主页左侧抽屉的背景
                 'themedarwer-d': '#212b36',
-                'themedarwer-l': '#637381'
+                'themedarwer-l': '#637381',
+                //主页数据夜间背景颜色
+                'hardware-d': '#1b2537'
                 // 可以继续添加更多的背景颜色
             },
             // 如果您需要为标签栏定义样式，可以在这里添加

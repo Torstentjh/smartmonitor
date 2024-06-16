@@ -29,7 +29,7 @@ const Contacts = () => {
                     <Image source={{
                         uri: 'https://avatars.githubusercontent.com/u/75771172?v=4'
                     }} style={[tw.style('items-center rounded-full w-30 h-30')]}></Image>
-                    <Text style={tw.style('mt-5 font-bold text-lg text-lighttext dark:text-darktext')}>Designed by Torsten.</Text>
+                    <Text style={tw.style('mt-5 font-bold text-2xl text-lighttext dark:text-darktext')}>Designed by Torsten.</Text>
                     <View style={tw.style('dark:border-slate-500 border-slate-300 border-b w-2/5 mt-2')}></View>
                     <View style={tw.style('mt-8 bg-content-l dark:bg-content-d w-4/5 rounded-2xl')}>
                         <Text style={tw.style('ml-5 mt-3 font-bold text-2xl text-lighttext dark:text-darktext')}>About</Text>
@@ -38,7 +38,7 @@ const Contacts = () => {
                         </Text>
                         <Text style={tw.style('text-lighttext dark:text-darktext text-lg ml-5')}> Let the blind see beyond harmony
                         </Text>
-                        <Text style={tw.style('text-lighttext dark:text-darktext text-lg ml-5 mt-2')}>如果你有什么问题或者建议，欢迎联系我！
+                        <Text style={tw.style('text-lighttext dark:text-darktext text-lg ml-5 mt-2')}>如果你有什么问题或者建议，请通过github提issue或发邮件。
                         </Text>
                         <CommontButton icon={<Icon name="github" size={24} color="#6f6f6f" />} name='Github' func={() => { handlePress(github) }} style={{ marginLeft: '3%', marginRight: '3%' }}></CommontButton>
                         <CommontButton icon={<Icon name="mail" size={24} color="#6f6f6f" />} name='邮箱' style={{ marginLeft: '3%', marginRight: '3%' }} func={() => { handlePress(mail) }}></CommontButton>

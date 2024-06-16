@@ -39,7 +39,7 @@ function Input({ onSubmit, username, setUsername, password, setPassword, isCheck
   return (
     <>
       <View style={tw.style('w-2/3 items-center flex-row my-3')}>
-        <TextInput style={tw.style('w-full dark:text-darktext text-lighttext border border-slate-300 rounded-lg text-sm ', isFocusTop && 'border-teal-500')}
+        <TextInput style={tw.style('w-full dark:text-darktext text-lighttext border border-slate-300 rounded-lg text-sm', isFocusTop && 'border-teal-500')}
           onChangeText={(text) => {
             setUsername(text)
           }}

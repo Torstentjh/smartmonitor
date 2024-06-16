@@ -11,12 +11,12 @@ type Props = {
 const DisplayMenu = ({ active }: Props) => {
     const { toggleMenu } = theme()
     return (
-        <View style={tw.style('dark:bg-dark-bg bg-light-bg')}>
+        <View style={tw.style('dark:bg-dark-bg bg-light-bg mb-4 mt-4')}>
             <Pressable style={tw.style(' w-24')} onPress={() => {
                 active.value = true;
                 toggleMenu();
             }}>
-                <Icon style={tw.style('mb-4 mt-4 ml-5 dark:text-slate-300 text-slate-600')} name="bars" size={50} ></Icon>
+                <Icon style={tw.style(' ml-5 dark:text-slate-300 text-slate-600')} name="bars" size={50} ></Icon>
             </Pressable>
         </View>
     );

@@ -14,6 +14,7 @@ import Firstlauncher from '../pages/Common/transition';
 import Profile from '../pages/User/Profile';
 import Login from '../pages/User/Login';
 import Register from '../pages/User/Register';
+import Message from '../pages/Messages';
 
 
 
@@ -27,6 +28,7 @@ export type RootStackParamList = {
     Launcher: undefined;
     Contacts: undefined;
     Profile: undefined
+    Message: undefined
 }
 type Props = {
     firstLoad: boolean
@@ -71,6 +73,14 @@ const rootNavigator = ({ firstLoad }: Props) => {
                     <Stack.Screen name='Profile' component={Profile} options={{
                         headerShown: true,
                         headerTitle: '个人资料',
+                        headerTitleAlign: 'center',
+                        headerStyle: { backgroundColor: clor() },
+                        headerTitleStyle: { color: colorScheme === 'light' ? '#475569' : '#c6cbef', },
+                        headerTintColor: colorScheme === 'light' ? '#475569' : '#c6cbef',
+                    }} />
+                    <Stack.Screen name='Message' component={Message} options={{
+                        headerShown: true,
+                        headerTitle: '消息中心',
                         headerTitleAlign: 'center',
                         headerStyle: { backgroundColor: clor() },
                         headerTitleStyle: { color: colorScheme === 'light' ? '#475569' : '#c6cbef', },
