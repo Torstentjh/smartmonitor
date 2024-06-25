@@ -3,7 +3,7 @@ import BottomSheet, { BottomSheetView, useBottomSheetTimingConfigs } from '@gorh
 import React, { Ref, useCallback, useRef, useState } from 'react';
 import { View, Text } from 'react-native';
 import { Easing } from 'react-native-reanimated';
-import tw from 'twrnc';
+import tw from '../../assets/tailwind';
 import Change from '.';
 
 type props = {
@@ -13,7 +13,7 @@ type props = {
 const BottomSheetT = ({ bottomSheetRef, handleSheetChanges }: props) => {
     const snappoints = ['50%']
     const animationConfigs = useBottomSheetTimingConfigs({
-        duration: 1000,
+        duration: 800,
         easing: Easing.in(Easing.bounce),
     });
 

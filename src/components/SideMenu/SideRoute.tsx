@@ -3,11 +3,10 @@ import { View, Text, Pressable } from 'react-native';
 import Icon from '@ant-design/react-native/lib/icon';
 // import  {IConDemo}  from '@ant-design/react-native/lib/icon';
 import { OutlineGlyphMapType } from '@ant-design/icons-react-native';
+import { SharedValue } from 'react-native-reanimated';
 
 import tw from '../../assets/tailwind';
 import { RootStackParamList } from '../../navigator/rootNavigate';
-
-import { SharedValue } from 'react-native-reanimated';
 import theme from '../../store/setting';
 import { useNavFilter } from '../../hooks/useNavigate';
 

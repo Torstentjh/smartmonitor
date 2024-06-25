@@ -2,12 +2,14 @@ import { createContext, useEffect, useState } from 'react';
 import tw, { useDeviceContext, useAppColorScheme } from '../assets/tailwind';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import useWebSocket from './Websocket'
+import Userinfo from '../store/userInfo';
 
 
 export const AppContext = createContext<any>(null);
 
 const AppContextProvider = ({ children }: { children: React.ReactNode }) => {
-    const socket = useWebSocket();
+    const { setIsLogin, isLogin } = Userinfo();
+    const socket = useWebSocket(isLogin);
     useEffect(() => {
         if (socket) {
             socket.onopen = () => {
@@ -32,6 +34,7 @@ const AppContextProvider = ({ children }: { children: React.ReactNode }) => {
         const getTheme = async () => {
             try {
                 const jsonValue = await AsyncStorage.getItem('InitTheme');
+                // return userInfo != null ? JSON.parse(userInfo) : null;
                 if (jsonValue == null) {
                     const themeValue = JSON.stringify('light');
                     await AsyncStorage.setItem('InitTheme', themeValue);
@@ -47,6 +50,20 @@ const AppContextProvider = ({ children }: { children: React.ReactNode }) => {
             }
         };
         getTheme();
+        const getData = async (key: string) => {
+            try {
+                const jsonValue = await AsyncStorage.getItem(key);
+                return jsonValue != null ? JSON.parse(jsonValue) : null;
+            } catch (e) {
+            }
+        };
+        const res = async () => {
+            const res = await getData('userInfo');
+            if (res.isLogin) {
+                setIsLogin(true)
+            }
+        }
+        res()
     }, [])
 
     const contexts = [colorScheme, toggleColorScheme, setColorScheme, buster, tw, socket];

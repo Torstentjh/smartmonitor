@@ -15,6 +15,8 @@ import Profile from '../pages/User/Profile';
 import Login from '../pages/User/Login';
 import Register from '../pages/User/Register';
 import Message from '../pages/Messages';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Userinfo from '../store/userInfo';
 
 
 
@@ -41,6 +43,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 const rootNavigator = ({ firstLoad }: Props) => {
     const { displayMenu } = themeSet();
+    const { setIsLogin, isLogin } = Userinfo();
     const clor = () => {
         if (displayMenu) {
             return colorScheme === 'light' ? '#c6cbef' : '#475569'
@@ -49,7 +52,7 @@ const rootNavigator = ({ firstLoad }: Props) => {
         }
     }
     const [theme, setTheme] = useState('light');
-    const [colorScheme, toggleColorScheme, setColorScheme, buster, tw] = useContext(AppContext);
+    const [colorScheme, toggleColorScheme, setColorScheme, buster, tw, socket] = useContext(AppContext);
     function LoadPage(): React.JSX.Element {
         // return firstLoad ? <Launcher></Launcher> : <Firstlauncher></Firstlauncher>
         return firstLoad ? <Firstlauncher></Firstlauncher> : <Launcher></Launcher>

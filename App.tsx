@@ -4,6 +4,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import RootNavigator from './src/navigator/rootNavigate';
 import AppContextProvider from './src/global/ContextProvider';
 import Provider from '@ant-design/react-native/lib/provider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+
+const queryClient = new QueryClient();
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -33,7 +37,9 @@ function App(): JSX.Element {
     <AppContextProvider>
       <SafeAreaProvider >
         <Provider>
-          <RootNavigator firstLoad={firstLoad} />
+          <QueryClientProvider client={queryClient}>
+            <RootNavigator firstLoad={firstLoad} />
+          </QueryClientProvider>
         </Provider>
       </SafeAreaProvider>
     </AppContextProvider>

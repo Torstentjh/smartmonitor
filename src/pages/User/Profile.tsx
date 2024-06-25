@@ -18,7 +18,7 @@ function Profile() {
     // const { disconnect } = useMqttStore()
     const [selectedImage, setSelectedImage] = useState<string>();
 
-    const { avatarUrl, addAvatar, isLogin, setIsLogin, setInfo, VerseChose } = info()
+    const { avatarUrl, addAvatar, isLogin } = info()
     const pick = () => {
         // launchImageLibrary({
         //     mediaType: 'photo',
@@ -93,7 +93,7 @@ function Profile() {
                 <Text style={tw.style('mt-2 mb-2 ml-3 text-lg dark:text-slate-100')}>
                     基础资料
                 </Text>
-                <SetInfo name="头像" func={handleAvatarPress} rightContent={<Image source={require('../../assets/global/avatar.png')} style={tw.style('w-15 h-15 rounded-full overflow-hidden -mr-2')}></Image>}></SetInfo>
+                <SetInfo name="头像" func={handleAvatarPress} rightContent={<Image source={isLogin ? require('../../assets/global/login.png') : require('../../assets/global/avatar.png')} style={tw.style('w-15 h-15 rounded-full overflow-hidden -mr-2')}></Image>}></SetInfo>
                 <SetInfo name="账号" func={handleAccountPress} rightContent={<Text style={tw.style('text-lg dark:text-slate-100')}>test</Text>}></SetInfo>
                 <SetInfo name="昵称" rightContent={<Text style={tw.style('text-lg dark:text-slate-100')}>Torsten</Text>} func={handleUsernamePress} ></SetInfo>
                 <SetInfo name="密码" func={handlePwdPress} ></SetInfo>

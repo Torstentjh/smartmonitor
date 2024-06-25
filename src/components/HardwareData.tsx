@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleProp, ViewStyle, FlexStyle, ImageStyle, TextStyle, } from 'react-native';
 import tw from '../assets/tailwind';
 
@@ -12,22 +12,11 @@ type prop = {
 }
 
 const HardWareInfo = ({ title, value, scale, style }: prop) => {
-    const [currentTime, setCurrentTime] = useState(new Date());
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentTime(new Date());
-        }, 1000); // 每秒更新时间
-
-        return () => {
-            clearInterval(timer); // 组件卸载时清除定时器
-        };
-    }, []);
+    const [currentTime, _] = useState(new Date());
     const formattedTime = currentTime.toLocaleTimeString('zh-CN', {
         month: '2-digit',
         day: '2-digit',
         hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
     });
     return (
         <View style={[tw.style('rounded-lg shadow-md  overflow-hidden w-9/10 mb-8',), style]}>

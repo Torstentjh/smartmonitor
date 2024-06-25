@@ -18,27 +18,15 @@ interface Props {
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   password: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
-  isCheckout?: boolean;
 }
-function Input({ onSubmit, username, setUsername, password, setPassword, isCheckout }: Props) {
+function Input({ onSubmit, username, setUsername, password, setPassword }: Props) {
   const [isFocusTop, setFocusTop] = useState(false);
   const [isFocusBtm, setFocusBtm] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
-  const handleSubmit = () => {
-    // if (!username || !password) {
-    //   Toast.fail('账号或密码不能为空', 0.5)
-    //   return;
-    // }
-    // if (!isCheckout) {
-    //   Toast.fail('请先同意用户协议', 0.5)
-    //   return;
-    // }
-    onSubmit({ name: username, pwd: password });
-  };
   return (
     <>
-      <View style={tw.style('w-2/3 items-center flex-row my-3')}>
+      <View style={tw.style('w-2/3 items-center flex-row my-3 shadow-lg')}>
         <TextInput style={tw.style('w-full dark:text-darktext text-lighttext border border-slate-300 rounded-lg text-sm', isFocusTop && 'border-teal-500')}
           onChangeText={(text) => {
             setUsername(text)
@@ -60,8 +48,8 @@ function Input({ onSubmit, username, setUsername, password, setPassword, isCheck
           </Pressable>
         )}
       </View>
-      <View style={tw.style('w-2/3 items-center flex-row my-3')}>
-        <TextInput style={tw.style('w-full dark:text-darktext text-lighttext border border-slate-300 rounded-lg text-sm ', isFocusBtm && 'border-teal-500')}
+      <View style={tw.style('w-2/3 items-center flex-row my-3 shadow-lg')}>
+        <TextInput style={tw.style('w-full dark:text-darktext text-lighttext border border-slate-300 rounded-lg text-sm', isFocusBtm && 'border-teal-500')}
           placeholder="密码"
           onChangeText={(text) => {
             setPassword(text)
@@ -72,7 +60,9 @@ function Input({ onSubmit, username, setUsername, password, setPassword, isCheck
           onBlur={() => { setFocusBtm(false) }}
           secureTextEntry={secureTextEntry}
           value={password}
-          onSubmitEditing={handleSubmit}
+        // onSubmitEditing={() => {
+        //   onSubmit({ name: username, pwd: password });
+        // }}
         ></TextInput>
         {password !== '' && (
           <Pressable style={tw.style('ml-auto mr-3')} onPress={() => {

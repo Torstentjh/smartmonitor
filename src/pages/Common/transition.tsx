@@ -13,8 +13,6 @@ const FirstLauncher = () => {
     const windowWidth = Dimensions.get('window').width * 0.2;
     const navigate = useNavigation()
     const cleanup = () => {
-        // clearTimeout(startRef.current)
-        // clearInterval(jumpRef.current)
         navigate.dispatch(StackActions.replace('Home'))
         const setFirst = async () => {
             try {

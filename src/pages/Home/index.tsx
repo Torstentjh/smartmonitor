@@ -5,8 +5,6 @@ import { useNavigationState } from '@react-navigation/native';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming, useDerivedValue, Extrapolation, interpolate } from 'react-native-reanimated';
 import Icon from '@ant-design/react-native/lib/icon';
 
-import tw from '../../assets/tailwind'
-// import theme from '../../store/setting'
 import DisplayMenu from '../../components/SideMenu/DisplayMenu';
 import Overlay from '../../components/SideMenu/Overlay';
 import Drawer from '../../components/SideMenu/Drawer';
@@ -19,6 +17,7 @@ import { AppContext } from '../../global/ContextProvider';
 
 
 const Home = () => {
+
     const [stateHUM, setOpen] = useState(false);
     const [stateLED, setLED] = useState(false);
     const [stateBEEP, setBEEP] = useState(false);
@@ -26,7 +25,7 @@ const Home = () => {
     const { isLogin } = Userinfo();
     const active = useSharedValue(false);
     const { navigate } = useNavFilter();
-    const [colorScheme, toggleColorScheme, setColorScheme, buster, tw, socket, send] = useContext(AppContext);
+    const [colorScheme, toggleColorScheme, setColorScheme, buster, tw, socket] = useContext(AppContext);
     const animation = useAnimatedStyle(() => {
         return {
             transform: [
@@ -43,31 +42,37 @@ const Home = () => {
     const sendMessage = (opt: any, change: boolean) => {
         const obj = { [opt]: change ? '0' : '1' }
         const mes = JSON.stringify(obj)
-        socket.send(mes);
+        try {
+            socket.send(mes);
+        } catch (error) {
+        }
     };
     useEffect(() => {
-        socket.onmessage = (event: any) => {
-            // console.log('msg:', event.data);
-            const obj = JSON.parse(event.data);
-            const res = Object.keys(obj)[0];
-            const changeVal = Boolean(obj[res] === '1');
-            switch (res) {
-                case 'stateHUM':
-                    setOpen(changeVal);
-                    break;
-                case 'stateLED':
-                    setLED(changeVal);
-                    break;
-                case 'stateBEEP':
-                    setBEEP(changeVal);
-                    break;
-                case 'stateCtrl':
-                    setCtrl(changeVal);
-                    break;
-                default:
-                    break;
-            }
-        };
+        try {
+            socket.onmessage = (event: any) => {
+                const obj = JSON.parse(event.data);
+                const res = Object.keys(obj)[0];
+                const changeVal = Boolean(obj[res] === '1');
+                switch (res) {
+                    case 'stateHUM':
+                        setOpen(changeVal);
+                        break;
+                    case 'stateLED':
+                        setLED(changeVal);
+                        break;
+                    case 'stateBEEP':
+                        setBEEP(changeVal);
+                        break;
+                    case 'stateCtrl':
+                        setCtrl(changeVal);
+                        break;
+                    default:
+                        break;
+                }
+            };
+        } catch (error) {
+
+        }
     })
     return (
         <SafeAreaView>
@@ -86,12 +91,16 @@ const Home = () => {
                         <HardWareInfo title={'温度'} value={'99'} scale={'℃'} style={tw.style('dark:bg-hardware-d')} />
                         <HardWareInfo title={'湿度'} value={'99'} scale={'%'} style={tw.style('dark:bg-hardware-d')} />
                         <HardWareInfo title={'气体浓度'} value={'99'} scale={'ppm'} style={tw.style('dark:bg-hardware-d')} />
-                        <View style={tw.style('flex flex-row w-9/10 flex-wrap justify-start items-center pb-8')}>
-                            <HardWareCtrl state={stateHUM} title={'加湿器'} func={() => { sendMessage('stateHUM', stateHUM) }} />
-                            <HardWareCtrl state={stateLED} func={() => { sendMessage('stateLED', stateLED) }} title={'Led灯'} />
-                            <HardWareCtrl state={stateBEEP} func={() => { sendMessage('stateBEEP', stateBEEP) }} title={'警报'} />
-                            <HardWareCtrl state={stateCtrl} func={() => { sendMessage('stateCTRL', stateCtrl) }} title={'手动控制'} />
+                        <View style={tw.style('flex flex-row w-9/10 h-90 flex-wrap justify-start items-center pb-8')}>
+                            {
+                                isLogin ? (<>
+                                    <HardWareCtrl state={stateHUM} title={'加湿器'} func={() => { sendMessage('stateHUM', stateHUM) }} />
+                                    <HardWareCtrl state={stateLED} func={() => { sendMessage('stateLED', stateLED) }} title={'Led灯'} />
+                                    <HardWareCtrl state={stateBEEP} func={() => { sendMessage('stateBEEP', stateBEEP) }} title={'警报'} />
+                                    <HardWareCtrl state={stateCtrl} func={() => { sendMessage('stateCTRL', stateCtrl) }} title={'手动控制'} />
 
+                                </>) : (<Text style={tw.style('text-lighttext dark:text-darktext mt-50  mx-auto font-bold text-3xl')}>请先登录.</Text>)
+                            }
                         </View>
                     </View>
                     <Overlay active={active}></Overlay>

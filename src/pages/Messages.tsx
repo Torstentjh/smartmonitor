@@ -1,14 +1,11 @@
-import React from 'react';
+import React, { Suspense, useState } from 'react';
 import { View, Text } from 'react-native';
 import tw from '../assets/tailwind';
 
 const Message = () => {
     return (
-        <View style={tw.style('justify-center items-center bg-white')}>
-            <Text style={tw.style('text-lg text-black')}>Message</Text>
-            <Text style={tw.style('text-lg text-black')}>Message</Text>
-            <Text style={tw.style('text-lg text-black')}>Message</Text>
-            <Text style={tw.style('text-lg text-black')}>Message</Text>
+        <View style={tw.style('bg-light-bg dark:bg-dark-bg h-full')}>
+            <Text style={tw.style('text-3xl font-bold text-lighttext dark:text-darktext text-center mt-5')}>Message</Text>
         </View>
     );
 };
