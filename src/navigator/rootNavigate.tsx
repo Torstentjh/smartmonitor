@@ -52,7 +52,7 @@ const rootNavigator = ({ firstLoad }: Props) => {
         }
     }
     const [theme, setTheme] = useState('light');
-    const [colorScheme, toggleColorScheme, setColorScheme, buster, tw, socket] = useContext(AppContext);
+    const { colorScheme, tw } = useContext(AppContext);
     function LoadPage(): React.JSX.Element {
         // return firstLoad ? <Launcher></Launcher> : <Firstlauncher></Firstlauncher>
         return firstLoad ? <Firstlauncher></Firstlauncher> : <Launcher></Launcher>

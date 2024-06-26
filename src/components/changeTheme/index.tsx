@@ -22,7 +22,7 @@ const Change = () => {
         setData(value);
     }
     // const { toggleTheme } = theme();
-    const [colorScheme, toggleColorScheme, setColorScheme, buster] = useContext(AppContext);
+    const { colorScheme, toggleColorScheme, setColorScheme, buster } = useContext(AppContext);
     return (
         <View style={tw.style('dark:bg-themedarwer-l bg-themedarwer-l w-full h-full items-center')}>
 

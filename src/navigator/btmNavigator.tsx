@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 
 const BtmNavigator = () => {
     const { initTabBarColor, displayMenu } = theme();
-    const [colorScheme, toggleColorScheme, setColorScheme, buster, tw] = useContext(AppContext);
+    const { colorScheme, tw } = useContext(AppContext);
     return (
         <>
             <Tab.Navigator screenOptions={{

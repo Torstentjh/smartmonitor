@@ -14,6 +14,7 @@ import { useNavFilter } from '../../hooks/useNavigate';
 import HardWareInfo from '../../components/HardwareData';
 import HardWareCtrl from '../../components/HardwareCtrl';
 import { AppContext } from '../../global/ContextProvider';
+import useWebSocket from '../../global/Websocket';
 
 
 const Home = () => {
@@ -25,7 +26,7 @@ const Home = () => {
     const { isLogin } = Userinfo();
     const active = useSharedValue(false);
     const { navigate } = useNavFilter();
-    const [colorScheme, toggleColorScheme, setColorScheme, buster, tw, socket] = useContext(AppContext);
+    const { tw, socket } = useContext(AppContext);
     const animation = useAnimatedStyle(() => {
         return {
             transform: [
@@ -48,11 +49,14 @@ const Home = () => {
         }
     };
     useEffect(() => {
+        console.log('主页的ws', socket);
         try {
             socket.onmessage = (event: any) => {
                 const obj = JSON.parse(event.data);
                 const res = Object.keys(obj)[0];
                 const changeVal = Boolean(obj[res] === '1');
+                console.log('23', changeVal);
+
                 switch (res) {
                     case 'stateHUM':
                         setOpen(changeVal);
@@ -73,7 +77,7 @@ const Home = () => {
         } catch (error) {
 
         }
-    })
+    }, [socket])
     return (
         <SafeAreaView>
             <Drawer active={active} isLogin={isLogin}></Drawer>

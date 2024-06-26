@@ -14,7 +14,7 @@ import { AppContext } from '../../global/ContextProvider';
 import Card from '../../components/Card';
 
 const Setting = () => {
-    const [colorScheme, toggleColorScheme, setColorScheme, buster, tw, socket] = useContext(AppContext);
+    const { tw, socket } = useContext(AppContext);
     const { setIsLogin, isLogin } = Userinfo();
     const [visible, setVisible] = useState(false);
     const { navigation } = useNavFilter()

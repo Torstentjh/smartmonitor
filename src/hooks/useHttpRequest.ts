@@ -13,7 +13,6 @@ const fetchMember = async (id: any, path: string) => {
     const { data } = await axios.post(`${process.env.REACT_APP_DevApi}/user/${path}`, formData.toString(), { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
     return data;
 }
-// `${process.env.REACT_APP_DevApi}/login`
 const fetchLogin = async (body: any) => {
     const formData = new URLSearchParams();
     formData.append('name', body.name);
